@@ -1,4 +1,4 @@
-/* Hide the default cursor everywhere */
+/* Hide the default cursor everywhere and reset default styles */
 html, body, * {
   cursor: none !important;
   margin: 0;
@@ -8,22 +8,49 @@ html, body, * {
 
 body {
   font-family: Arial, sans-serif;
-  height: 100vh;
+}
+
+/* HERO SECTION
+   Full viewport height, split into two flex items (each ~50%) */
+.hero {
   display: flex;
   flex-direction: column;
+  height: 100vh; /* 100% of the viewport height */
+}
+
+.hero-top,
+.hero-bottom {
+  flex: 1; /* Each takes half of the hero's height */
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Custom cursor: 20×20 circle */
+/* Headline styling in the top half */
+.hero-top h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+/* Image in the bottom half:
+   - 46% of viewport width
+   - 16px rounded corners */
+.hero-bottom img {
+  width: 46vw;
+  border-radius: 16px;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+/* CUSTOM CURSOR
+   20×20 circle that follows the mouse */
 .custom-cursor {
+  position: fixed;
   top: 0;
   left: 0;
   width: 20px;
   height: 20px;
   background-color: black;
   border-radius: 50%;
-  position: fixed;     /* fixed or absolute can work, but fixed often feels more stable */
-  pointer-events: none;
-  /* No default transform offset, we'll handle that in JS */
+  pointer-events: none; /* allows clicks through the cursor */
 }
