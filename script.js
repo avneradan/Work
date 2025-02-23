@@ -1,7 +1,7 @@
-let mouseX = e.clientX;
-let mouseY = e.clientY;
-let cursorX = e.clientX;
-let cursorY = e.clientY;
+let mouseX = 0;
+let mouseY = 0;
+let cursorX = 0;
+let cursorY = 0;
 let firstMove = true;
 
 const customCursor = document.querySelector('.custom-cursor');
@@ -19,11 +19,11 @@ document.addEventListener('mousemove', e => {
   }
 });
 
-function animateCursor() {
+//  function animateCursor() {
   // Lerp / smoothing
-  const speed = 0.1;
-  cursorX += (mouseX - cursorX) * speed;
-  cursorY += (mouseY - cursorY) * speed;
+//  const speed = 0.1;
+//  cursorX += (mouseX - cursorX) * speed;
+//  cursorY += (mouseY - cursorY) * speed;
 
   // Position the cursor (center it by subtracting half of its size if desired)
   customCursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
