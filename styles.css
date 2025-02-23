@@ -1,31 +1,17 @@
-/* Hide the native pointer */
+/* Hide the default cursor */
 body {
-    cursor: none;
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
+  cursor: none;
+  margin: 0;
+  padding: 0;
 }
 
-/* Ellipse shape for the custom cursor */
+/* Custom ellipse cursor */
 .custom-cursor {
-    width: 20px; /* 20px wide */
-    height: 10px; /* 10px tall */
-    background-color: black;
-    border-radius: 50%; /* Makes it elliptical/oval */
-    position: absolute;
-    pointer-events: none; /* The cursor shouldn't block clicks */
-    /* Center the div on the pointer coordinates (translate by 50% of its size) */
-    transform: translate(-50%, -50%);
-    /* Optional: Add a transition for a smoother trailing effect */
-    transition: top 0.03s ease, left 0.03s ease;
-}
-
-/* Some demo styles for content */
-h1 {
-    text-align: center;
-    margin-top: 50px;
-}
-
-p {
-    text-align: center;
+  width: 20px;
+  height: 10px;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
 }
