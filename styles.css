@@ -27,17 +27,10 @@ body {
   justify-content: center;
 }
 
-/* Top half: center the headline text */
-.hero-top h1 {
-  font-size: 3rem;
-  text-align: center;
-}
-
 /* Bottom half content wrapper 
    (so we can size the canvas area nicely) */
 .bottom-content {
   display: flex;
-  flex-direction: column;
   align-items: center;
   width: 46vw;          /* 46% of viewport width */
   height: 100%;         /* Fill the bottom half */
