@@ -23,3 +23,14 @@ function animateCursor() {
 }
 
 animateCursor();
+
+<div class="star-wrapper">
+  <object id="star-demo" type="image/svg+xml" data="/img/star.svg" alt="embedded svg"></object>
+
+  <p style="padding: 0 5%">
+    The <a href="https://github.com/taye/interact.js/blob/master/examples/star/star.svg?short_path=e1e0fe0">star.svg</a>
+    file references interact.js as well as
+    <a href="https://github.com/taye/interact.js/blob/master/examples/star/index.js"> another script</a>
+    to enable and respond to drag events.
+  </p>
+</div>
