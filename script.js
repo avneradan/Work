@@ -13,7 +13,7 @@ document.addEventListener('mousemove', e => {
 
   // On the very first mouse move, initialize cursorX/Y
   if (firstMove) {
-    firstMove = false;
+    firstMove = true;
     cursorX = mouseX;
     cursorY = mouseY;
   }
