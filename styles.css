@@ -17,6 +17,8 @@ body {
 
 /* Custom cursor: 20×20 circle */
 .custom-cursor {
+  top: 0;
+  left: 0;
   width: 20px;
   height: 20px;
   background-color: black;
