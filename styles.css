@@ -38,7 +38,7 @@ body {
   background-color: #fafafa;
   border-radius: 16px;
   /* Optionally give it a height or padding if you want visible space */
-  /* height: 200px;  */
+  height: 50vh;
 }
  
 /* CUSTOM CURSOR
