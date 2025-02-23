@@ -18,12 +18,13 @@ body {
 .hero {
     text-align: center;
     height: 50vh;
-    width: 30vw;
+    width: calc(100% - 20vw); /* 100% width minus 10vw padding from both sides */
     font-size: 72px;
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0 10vw; /* 10vw padding on both sides */
 }
 
 .hero-container {
