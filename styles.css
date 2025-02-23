@@ -1,17 +1,27 @@
-/* Hide the default cursor */
-body {
+/* Hide the default cursor everywhere */
+html, body, * {
   cursor: none !important;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
+body {
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Custom cursor: 20×20 circle */
 .custom-cursor {
   width: 20px;
   height: 20px;
   background-color: black;
-  border-radius: 50%; /* Makes it a circle */
-  position: absolute;
+  border-radius: 50%;
+  position: fixed;     /* fixed or absolute can work, but fixed often feels more stable */
   pointer-events: none;
-  transform: translate(-50%, -50%);
+  /* No default transform offset, we'll handle that in JS */
 }
-
