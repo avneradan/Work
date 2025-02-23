@@ -40,7 +40,20 @@ body {
   /* Optionally give it a height or padding if you want visible space */
   height: 50vh;
 }
- 
+ .star-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+  height: 100%;
+}
+#star-demo {
+  display: block;
+  flex-grow: 1;
+  touch-action: none;
+  max-height: 100vw;
+  max-width: 100vw;
+}
 /* CUSTOM CURSOR
    20×20 circle that follows the mouse */
 .custom-cursor {
