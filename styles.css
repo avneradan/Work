@@ -1,17 +1,17 @@
 /* Hide the default cursor */
 body {
-  cursor: none;
+  cursor: none !important;
   margin: 0;
   padding: 0;
 }
 
-/* Custom ellipse cursor */
 .custom-cursor {
   width: 20px;
   height: 20px;
   background-color: black;
-  border-radius: 50%;
+  border-radius: 50%; /* Makes it a circle */
   position: absolute;
   pointer-events: none;
   transform: translate(-50%, -50%);
 }
+
