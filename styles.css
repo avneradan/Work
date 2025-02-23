@@ -37,19 +37,6 @@ body {
   justify-content: center;
 }
 
-/* The interactive rainbow canvas */
-.rainbow-pixel-canvas {
-  width: 100%;          /* Fill the .bottom-content width */
-  height: 80%;          /* Adjust for some space for the <p> below */
-  box-sizing: border-box;
-  background: #fff;     /* Canvas background */
-  border-radius: 16px;
-  user-select: none;
-  touch-action: none;
-  display: block;
-  margin-bottom: 1rem;
-}
-
 /* Instruction paragraph under the canvas */
 .bottom-content p {
   text-align: center;
