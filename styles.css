@@ -26,22 +26,21 @@ body {
   justify-content: center;
 }
 
-/* Headline styling in the top half */
+/* Top half: center the headline */
 .hero-top h1 {
   font-size: 3rem;
   text-align: center;
 }
 
-/* Image in the bottom half:
-   - 46% of viewport width
-   - 16px rounded corners */
-.hero-bottom img {
+/* Bottom half: container with #fafafa background */
+.placeholder-container {
   width: 46vw;
+  background-color: #fafafa;
   border-radius: 16px;
-  max-height: 100%;
-  object-fit: cover;
+  /* Optionally give it a height or padding if you want visible space */
+  /* height: 200px;  */
 }
-
+ 
 /* CUSTOM CURSOR
    20×20 circle that follows the mouse */
 .custom-cursor {
