@@ -24,7 +24,7 @@ function animateCursor() {
 
   // Update the position of the cursor element
   // We center the circle by subtracting half of its width/height (10px)
-  customCursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+  customCursor.style.transform = `translate(${cursorX - 0}px, ${cursorY - 0}px)`;
 
   // Schedule the next animation frame
   requestAnimationFrame(animateCursor);
