@@ -3,26 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <title>Smooth Custom Cursor + Hero</title>
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="styles.css">
+  <!-- Interact.js (for the rainbow canvas) via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@interactjs/interactjs/dist/interact.min.js"></script>
 </head>
 <body>
+
   <!-- HERO SECTION -->
   <section class="hero">
-    <!-- Top half: "Hello World" -->
+    <!-- Top half: "Hello WoW" -->
     <div class="hero-top">
       <h1>Hello WoW</h1>
     </div>
 
-    <!-- Bottom half: Placeholder container -->
+    <!-- Bottom half: interactive rainbow canvas -->
     <div class="hero-bottom">
-      <div class="placeholder-container"></div>
+      <div class="bottom-content">
+        <canvas class="rainbow-pixel-canvas"></canvas>
+        <p>Drag to draw. Double tap to clear.</p>
+      </div>
     </div>
   </section>
 
   <!-- Custom cursor element -->
   <div class="custom-cursor"></div>
 
-  <!-- Example smooth cursor script -->
-  <script src="script.js" defer></script>
+  <!-- Smooth custom cursor script -->
+  <script src="cursor.js" defer></script>
+
+  <!-- Rainbow canvas logic (using Interact.js) -->
+  <script src="rainbow.js" defer></script>
+
 </body>
 </html>
