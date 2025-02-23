@@ -1,4 +1,4 @@
-/* Hide the default cursor everywhere and reset default styles */
+/* Hide the default cursor everywhere, reset basic styles */
 html, body, * {
   cursor: none !important;
   margin: 0;
@@ -10,39 +10,62 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* HERO SECTION
-   Full viewport height, split into two flex items (each ~50%) */
+/* HERO SECTION 
+   Use flex-col so top + bottom each take ~50% of viewport */
 .hero {
   display: flex;
   flex-direction: column;
   height: 100vh; /* 100% of the viewport height */
 }
 
+/* Top & bottom each split the hero equally */
 .hero-top,
 .hero-bottom {
-  flex: 1; /* Each takes half of the hero's height */
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Top half: center the headline */
+/* Top half: center the headline text */
 .hero-top h1 {
   font-size: 3rem;
   text-align: center;
 }
 
-/* Bottom half: container with #fafafa background */
-.placeholder-container {
-  width: 46vw;
-  background-color: #fafafa;
-  border-radius: 16px;
-  /* Optionally give it a height or padding if you want visible space */
-  height: 50vh;
+/* Bottom half content wrapper 
+   (so we can size the canvas area nicely) */
+.bottom-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 46vw;          /* 46% of viewport width */
+  height: 100%;         /* Fill the bottom half */
+  justify-content: center;
 }
 
-/* CUSTOM CURSOR
-   20×20 circle that follows the mouse */
+/* The interactive rainbow canvas */
+.rainbow-pixel-canvas {
+  width: 100%;          /* Fill the .bottom-content width */
+  height: 80%;          /* Adjust for some space for the <p> below */
+  box-sizing: border-box;
+  background: #fff;     /* Canvas background */
+  border-radius: 16px;
+  user-select: none;
+  touch-action: none;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/* Instruction paragraph under the canvas */
+.bottom-content p {
+  text-align: center;
+  font-family: monospace;
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+/* CUSTOM CURSOR (20×20 circle) */
 .custom-cursor {
   position: fixed;
   top: 0;
@@ -51,5 +74,5 @@ body {
   height: 20px;
   background-color: black;
   border-radius: 50%;
-  pointer-events: none; /* allows clicks through the cursor */
+  pointer-events: none;
 }
