@@ -1,7 +1,7 @@
-let mouseX = 0;
-let mouseY = 0;
-let cursorX = 0;
-let cursorY = 0;
+let mouseX = e.clientX;
+let mouseY = e.clientY;
+let cursorX = e.clientX;
+let cursorY = e.clientY;
 let firstMove = true;
 
 const customCursor = document.querySelector('.custom-cursor');
@@ -13,7 +13,7 @@ document.addEventListener('mousemove', e => {
 
   // On the very first mouse move, initialize cursorX/Y
   if (firstMove) {
-    firstMove = true;
+    firstMove = false;
     cursorX = mouseX;
     cursorY = mouseY;
   }
