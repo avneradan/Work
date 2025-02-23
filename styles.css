@@ -8,7 +8,7 @@ body {
 /* Custom ellipse cursor */
 .custom-cursor {
   width: 20px;
-  height: 10px;
+  height: 20px;
   background-color: black;
   border-radius: 50%;
   position: absolute;
