@@ -1,24 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Smooth Custom Cursor + Hero</title>
-  <!-- Main stylesheet -->
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agency Website</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <!-- HERO SECTION -->
-    <div class="hero">
+    <div class="custom-cursor-container">
+        <div class="custom-cursor-large"></div>
+        <div class="custom-cursor"></div>
     </div>
-  </section>
+    
+    <section class="hero">Lorem ipsum dolor amet sit</section>
+    <div class="hero-container"></div>
+    
+    <section class="work">
+        <div class="work-card"></div>
+        <div class="work-card"></div>
+        <div class="work-card"></div>
+    </section>
+    
+    <section class="contact">lorem ipsum dolor amet sit</section>
+    
+    <footer class="footer">Lorems</footer>
+    
+    <script>
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let firstMove = true;
 
-  <!-- Custom cursor element -->
-  <div class="custom-cursor"></div>
+        const customCursor = document.querySelector('.custom-cursor');
+        const customCursorLarge = document.querySelector('.custom-cursor-large');
 
-  <!-- Smooth custom cursor script -->
-  <script src="cursor.js" defer></script>
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            if (firstMove) {
+                firstMove = false;
+                cursorX = mouseX;
+                cursorY = mouseY;
+            }
+        });
 
+        let cursorLargeX = 0, cursorLargeY = 0;
+        function animateCursor() {
+            const speed = 0.256; // Slower movement for noticeable lerp
+            cursorX += (mouseX - cursorX) * speed;
+            cursorY += (mouseY - cursorY) * speed;
+            customCursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+            cursorLargeX += (mouseX - cursorLargeX) * (speed * 0.6); // Slight delay effect
+            cursorLargeY += (mouseY - cursorLargeY) * (speed * 0.6);
+            customCursorLarge.style.transform = `translate(${cursorLargeX - 20}px, ${cursorLargeY - 20}px)`;
+            requestAnimationFrame(animateCursor);
+        }
 
+        animateCursor();
+    </script>
 </body>
 </html>
