@@ -15,7 +15,7 @@ document.addEventListener('mousemove', (e) => {
 });
 
 function animateCursor() {
-  const speed = 0.01; 
+  const speed = 0.9; 
   cursorX += (mouseX - cursorX) * speed;
   cursorY += (mouseY - cursorY) * speed;
   customCursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
