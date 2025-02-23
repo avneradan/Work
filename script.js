@@ -18,7 +18,7 @@ function animateCursor() {
   const speed = 0.01; 
   cursorX += (mouseX - cursorX) * speed;
   cursorY += (mouseY - cursorY) * speed;
-  customCursor.style.transform = `translate(${cursorX - 1}px, ${cursorY - 1}px)`;
+  customCursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
   requestAnimationFrame(animateCursor);
 }
 
