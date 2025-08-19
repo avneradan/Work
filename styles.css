@@ -17,14 +17,14 @@ body {
 
 .hero {
     text-align: center;
-    height: 50vh;
-    width: calc(100% - 20vw); /* 100% width minus 10vw padding from both sides */
+    height: 90vh;
+    width: calc(100% - 20vw);
     font-size: 24px;
     font-weight: regular;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 10vw; /* 10vw padding on both sides */
+    padding: 0 10vw;
 }
 
 .hero-container {
@@ -37,14 +37,14 @@ body {
 .work {
     width: 96vw;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
     margin-top: 20px;
 }
 
 .work-card {
     width: 100%;
-    aspect-ratio: 9 / 16;
+    aspect-ratio: 4 / 5;
     border-radius: 16px;
     background: white;
 }
@@ -94,3 +94,23 @@ body {
     position: absolute;
     transform: translate(-10px, -10px);
 }
+
+.swiper-slide.showcase-card {
+    transition: transform 0.2s ease;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    will-change: transform;
+    overflow: hidden;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  }
+  
+  .swiper-slide.showcase-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+  }
+  

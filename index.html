@@ -1,73 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avner Adan</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Avner Adan</title>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-    <div class="custom-cursor-container">
-        <div class="custom-cursor-large"></div>
-        <div class="custom-cursor"></div>
+
+  <!-- Custom cursor -->
+  <div class="custom-cursor-container" aria-hidden="true">
+    <div class="custom-cursor-large"></div>
+    <div class="custom-cursor"></div>
+  </div>
+
+  <!-- Content -->
+  <section class="hero">
+    Avner Adan is a resourceful<br>design director and educator
+  </section>
+
+  <section class="work">
+    <div class="work-card">
+      <video autoplay muted loop playsinline style="width:100%; height:100%; object-fit:cover;">
+        <source src="media/Video-test.mp4" type="video/mp4"/>
+        Your browser does not support the video tag.
+      </video>
     </div>
-    
-    <section class="hero">Avner Adan is a resourceful<br>design director and educator </section>
-    <div class="hero-container"></div>
-    
-    <section class="work">
-        <div class="work-card">
-            <video autoplay muted loop playsinline style="width: 100%; height: 100%; border-radius: 16px; object-fit: cover;">
-                <source src="media/Video-test.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-        </div>
-        
-        <div class="work-card"></div>
-        <div class="work-card"></div>
-        <div class="work-card"></div>
-        <div class="work-card"></div>
-        <div class="work-card"></div>
-        <div class="work-card"></div>
-        <div class="work-card"></div>
-        <div class="work-card"></div>
-    </section>
-    
-    <section class="contact">lorem ipsum dolor amet sit</section>
-    
-    <footer class="footer">Lorems</footer>
-    
-    <script> // custom cursor
-        let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
-        let firstMove = true;
+    <div class="work-card"></div>
+    <div class="work-card"></div>
+    <div class="work-card"></div>
+    <div class="work-card"></div>
+    <div class="work-card"></div>
+    <div class="work-card"></div>
+    <div class="work-card"></div>
+    <div class="work-card"></div>
+  </section>
 
-        const customCursor = document.querySelector('.custom-cursor');
-        const customCursorLarge = document.querySelector('.custom-cursor-large');
+  <section class="contact">lorem ipsum dolor amet sit</section>
+  <footer class="footer">Lorems</footer>
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            if (firstMove) {
-                firstMove = false;
-                cursorX = mouseX;
-                cursorY = mouseY;
-            }
-        });
+  <script>
+    // Custom cursor (hidden native cursor handled in CSS)
+    const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const cursorContainer = document.querySelector('.custom-cursor-container');
+    const customCursor = document.querySelector('.custom-cursor');
+    const customCursorLarge = document.querySelector('.custom-cursor-large');
 
-        let cursorLargeX = 0, cursorLargeY = 0;
-        function animateCursor() {
-            const speed = 0.256; // Slower movement for noticeable lerp
-            cursorX += (mouseX - cursorX) * speed;
-            cursorY += (mouseY - cursorY) * speed;
-            customCursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
-            cursorLargeX += (mouseX - cursorLargeX) * (speed * 0.6); // Slight delay effect
-            cursorLargeY += (mouseY - cursorLargeY) * (speed * 0.6);
-            customCursorLarge.style.transform = `translate(${cursorLargeX - 20}px, ${cursorLargeY - 20}px)`;
-            requestAnimationFrame(animateCursor);
+    if (isFinePointer && cursorContainer && customCursor && customCursorLarge) {
+      let mouseX = 0, mouseY = 0;
+      let cursorX = 0, cursorY = 0;
+      let cursorLargeX = 0, cursorLargeY = 0;
+      let firstMove = true;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (firstMove) {
+          firstMove = false;
+          cursorX = mouseX;
+          cursorY = mouseY;
+          cursorLargeX = mouseX;
+          cursorLargeY = mouseY;
         }
+        // Ensure container is visible when moving inside window
+        cursorContainer.style.display = '';
+      });
 
-        animateCursor();
-    </script>
+      function animateCursor() {
+        const speed = 0.256; // your chosen smoothing
+        cursorX += (mouseX - cursorX) * speed;
+        cursorY += (mouseY - cursorY) * speed;
+        customCursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+
+        const lag = speed * 0.6; // slight delay on the large circle
+        cursorLargeX += (mouseX - cursorLargeX) * lag;
+        cursorLargeY += (mouseY - cursorLargeY) * lag;
+        customCursorLarge.style.transform = `translate(${cursorLargeX - 20}px, ${cursorLargeY - 20}px)`;
+
+        requestAnimationFrame(animateCursor);
+      }
+      animateCursor();
+
+      // Hide custom cursor when the mouse leaves the window
+      document.addEventListener('mouseleave', () => {
+        cursorContainer.style.display = 'none';
+      });
+      document.addEventListener('mouseenter', () => {
+        cursorContainer.style.display = '';
+      });
+    }
+  </script>
 </body>
 </html>

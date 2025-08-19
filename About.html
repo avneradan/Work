@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About – Avner Adan</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <style>
+    .nav {
+      position: absolute;
+      top: 24px;
+      left: 5vw;
+      font-size: 16px;
+      font-weight: bold;
+      z-index: 100;
+    }
+
+    .nav a {
+      margin-right: 20px;
+      text-decoration: none;
+      color: black;
+    }
+
+    .about {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 100vh;
+      padding: 0 5vw;
+      background: white;
+    }
+
+    .about-text {
+      max-width: 600px;
+      font-size: 28px;
+      line-height: 1.6;
+    }
+
+    .about-text span.highlight {
+      color: #b74cff;
+    }
+
+    .about-logo {
+      background: black;
+      color: white;
+      padding: 8px 16px;
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+
+    .about-carousel {
+      width: 420px;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-caption {
+      font-size: 14px;
+      text-align: center;
+      margin-top: 12px;
+      opacity: 0.5;
+    }
+
+    .showcase-card {
+      transition: transform 0.2s ease;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      will-change: transform;
+    }
+  </style>
+</head>
+<body>
+  <div class="custom-cursor-container">
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-large"></div>
+  </div>
+
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+  </div>
+
+  <section class="about">
+    <div class="about-text">
+      <div class="about-logo">Aa!</div>
+      <p>
+        Avner Adan is a resourceful design director and educator,
+        <span class="highlight">currently exploring the boundaries of spatial and product design</span>
+      </p>
+    </div>
+    <div class="about-carousel">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide showcase-card">
+            <img src="media/about-slide-1.png" alt="Slide 1">
+          </div>
+          <div class="swiper-slide showcase-card">
+            <img src="media/about-slide-2.png" alt="Slide 2">
+          </div>
+          <div class="swiper-slide showcase-card">
+            <img src="media/about-slide-3.png" alt="Slide 3">
+          </div>
+        </div>
+      </div>
+      <div class="about-caption">&lt; Swipe to navigate &gt;</div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="cursor.js"></script>
+  <script src="showcase-card.js"></script>
+  <script>
+    new Swiper('.swiper', {
+      loop: true,
+      grabCursor: true,
+      slidesPerView: 1,
+      spaceBetween: 20,
+      centeredSlides: true,
+      effect: 'slide',
+    });
+  </script>
+</body>
+</html>
