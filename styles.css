@@ -1,84 +1,210 @@
-@import url('https://fonts.googleapis.com/css2?family=General+Sans:wght@400;700&display=swap');
+/* =========================
+   Fonts & Base
+   ========================= */
+   @import url('https://fonts.googleapis.com/css2?family=General+Sans:wght@400;700&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'General Sans', sans-serif;
-}
-
-/* Hide native cursor everywhere on the page */
-html, body, * { cursor: none !important; }
-
-/* If you want to allow the native cursor on specific elements, add this class */
-.allow-native-cursor { cursor: auto !important; }
-
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #f5f5f5;
-}
-
-/* Layout (unchanged) */
-.hero {
-  text-align: center;
-  height: 90vh;
-  width: calc(100% - 20vw);
-  font-size: 24px;
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 10vw;
-}
-.hero-container { width: 96%; height: 60vh; border-radius: 16px; background: #fff; }
-.work {
-  width: 96vw;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: 20px;
-}
-.work-card { width: 100%; aspect-ratio: 4 / 5; border-radius: 16px; background: #fff; overflow: hidden; }
-.contact {
-  width: 96vw; height: 30vh; display: flex; align-items: center; justify-content: center;
-  font-size: 44px; font-weight: 700; text-align: center;
-}
-.footer {
-  width: 100%; height: 80vh; display: flex; align-items: center; justify-content: center;
-  font-size: 120px; font-weight: 700;
-}
-
-/* Optional card styling you had */
-.swiper-slide.showcase-card {
-  transition: transform 0.2s ease; transform-style: preserve-3d; perspective: 1000px;
-  will-change: transform; overflow: hidden; border-radius: 20px; background: #fff;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-}
-.swiper-slide.showcase-card img { width: 100%; height: auto; display: block; pointer-events: none; user-select: none; }
-
-/* CUSTOM CURSOR */
-.custom-cursor-container {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;        /* never block clicks */
-  z-index: 999999;
-  opacity: 1;
-  transition: opacity 120ms linear;
-}
-.custom-cursor,
-.custom-cursor-large {
-  position: absolute;
-  border-radius: 50%;
-  will-change: transform;
-  transform: translate3d(0,0,0);
-}
-.custom-cursor { width: 20px; height: 20px; background: #000; }
-.custom-cursor-large { width: 40px; height: 40px; background: rgba(0,0,0,0.2); }
-
-/* On touch devices, keep the native cursor/gestures */
-@media (hover: none), (pointer: coarse) {
-  .custom-cursor-container { display: none; }
-  html, body, * { cursor: auto !important; }
-}
+   * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: 'General Sans', sans-serif;
+   }
+   
+   /* Hide the native cursor everywhere on the page */
+   html, body, * { cursor: none !important; }
+   
+   /* Utility: opt a specific element back into the native cursor if needed */
+   .allow-native-cursor { cursor: auto !important; }
+   
+   body {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     background-color: #f5f5f5;
+     color: #111;
+   }
+   
+   /* =========================
+      Layout
+      ========================= */
+   .hero {
+     text-align: center;
+     height: 90vh;
+     width: calc(100% - 20vw);
+     font-size: 24px;
+     font-weight: 400;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding: 0 10vw;
+   }
+   
+   .hero-container {
+     width: 96%;
+     height: 60vh;
+     border-radius: 16px;
+     background: #fff;
+   }
+   
+   .work {
+     width: 96vw;
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 12px;
+     margin-top: 20px;
+   }
+   
+   .work-card {
+     width: 100%;
+     aspect-ratio: 4 / 5;
+     border-radius: 16px;
+     background: #fff;
+     overflow: hidden;
+   }
+   
+   .contact {
+     width: 96vw;
+     height: 30vh;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 44px;
+     font-weight: 700;
+     text-align: center;
+   }
+   
+   .footer {
+     width: 100%;
+     height: 80vh;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 120px;
+     font-weight: 700;
+   }
+   
+   /* Optional card styling you had */
+   .swiper-slide.showcase-card {
+     transition: transform 0.2s ease;
+     transform-style: preserve-3d;
+     perspective: 1000px;
+     will-change: transform;
+     overflow: hidden;
+     border-radius: 20px;
+     background: #fff;
+     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+   }
+   .swiper-slide.showcase-card img {
+     width: 100%;
+     height: auto;
+     display: block;
+     pointer-events: none;
+     user-select: none;
+   }
+   
+   /* =========================
+      Custom Cursor
+      ========================= */
+   .custom-cursor-container {
+     position: fixed;
+     inset: 0;
+     pointer-events: none;     /* never block clicks */
+     z-index: 999999;
+     opacity: 1;
+     transition: opacity 120ms linear;
+   }
+   
+   .custom-cursor,
+   .custom-cursor-large {
+     position: absolute;
+     border-radius: 50%;
+     will-change: transform;
+     transform: translate3d(0,0,0);
+   }
+   
+   .custom-cursor {
+     width: 20px;
+     height: 20px;
+     background: #000;
+   }
+   
+   .custom-cursor-large {
+     width: 40px;
+     height: 40px;
+     background: rgba(0,0,0,0.2);
+   }
+   
+   /* On touch devices, keep native gestures & cursor */
+   @media (hover: none), (pointer: coarse) {
+     .custom-cursor-container { display: none; }
+     html, body, * { cursor: auto !important; }
+   }
+   
+   /* =========================
+      Infinite Horizontal Loop
+      ========================= */
+   .infinite-horizontal {
+     width: 100%;
+     overflow: hidden;           /* hide the wrap seam */
+     display: grid;
+     gap: 18px;
+     margin: 6vh 0;
+   }
+   
+   .loop-row {
+     --gap: 48px;
+     position: relative;
+     overflow: hidden;
+   
+     /* side fade (mask) */
+     mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+     -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+   }
+   
+   .loop-row .loop-track {
+     display: inline-flex;
+     align-items: center;
+     gap: var(--gap);
+     will-change: transform;
+     animation: loop-x 30s linear infinite; /* duration is overridden by JS */
+   }
+   
+   .loop-row.reverse .loop-track {
+     animation-direction: reverse;
+   }
+   
+   .loop-item {
+     flex: 0 0 auto;
+     font-size: 44px;
+     font-weight: 700;
+     letter-spacing: 0.02em;
+     padding: 12px 22px;
+     border-radius: 999px;
+     background: #fff;
+     color: #111;
+     box-shadow: 0 6px 18px rgba(0,0,0,.06);
+     pointer-events: none;   /* don't block your custom cursor */
+     user-select: none;
+   }
+   
+   .loop-item img {
+     height: 44px;
+     width: auto;
+     display: block;
+     pointer-events: none;
+   }
+   
+   /* Pause on hover (optional) */
+   .loop-row:hover .loop-track { animation-play-state: paused; }
+   
+   /* Reduced motion */
+   @media (prefers-reduced-motion: reduce) {
+     .loop-row .loop-track { animation: none !important; }
+   }
+   
+   /* The loop moves one "half" width; JS duplicates items so 50% is seamless */
+   @keyframes loop-x {
+     from { transform: translateX(0); }
+     to   { transform: translateX(-50%); }
+   }
+   
