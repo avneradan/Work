@@ -1,116 +1,84 @@
 @import url('https://fonts.googleapis.com/css2?family=General+Sans:wght@400;700&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'General Sans', sans-serif;
-    cursor: none !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'General Sans', sans-serif;
 }
+
+/* Hide native cursor everywhere on the page */
+html, body, * { cursor: none !important; }
+
+/* If you want to allow the native cursor on specific elements, add this class */
+.allow-native-cursor { cursor: auto !important; }
 
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f5f5f5;
 }
 
+/* Layout (unchanged) */
 .hero {
-    text-align: center;
-    height: 90vh;
-    width: calc(100% - 20vw);
-    font-size: 24px;
-    font-weight: regular;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 10vw;
+  text-align: center;
+  height: 90vh;
+  width: calc(100% - 20vw);
+  font-size: 24px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10vw;
 }
-
-.hero-container {
-    width: 96%;
-    height: 60vh;
-    border-radius: 16px;
-    background: white;
-}
-
+.hero-container { width: 96%; height: 60vh; border-radius: 16px; background: #fff; }
 .work {
-    width: 96vw;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-top: 20px;
+  width: 96vw;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 20px;
 }
-
-.work-card {
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    border-radius: 16px;
-    background: white;
-}
-
+.work-card { width: 100%; aspect-ratio: 4 / 5; border-radius: 16px; background: #fff; overflow: hidden; }
 .contact {
-    width: 96vw;
-    height: 30vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 44px;
-    font-weight: bold;
-    text-align: center;
+  width: 96vw; height: 30vh; display: flex; align-items: center; justify-content: center;
+  font-size: 44px; font-weight: 700; text-align: center;
+}
+.footer {
+  width: 100%; height: 80vh; display: flex; align-items: center; justify-content: center;
+  font-size: 120px; font-weight: 700;
 }
 
-.footer {
-    width: 100%;
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 120px;
-    font-weight: bold;
+/* Optional card styling you had */
+.swiper-slide.showcase-card {
+  transition: transform 0.2s ease; transform-style: preserve-3d; perspective: 1000px;
+  will-change: transform; overflow: hidden; border-radius: 20px; background: #fff;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 }
+.swiper-slide.showcase-card img { width: 100%; height: auto; display: block; pointer-events: none; user-select: none; }
 
 /* CUSTOM CURSOR */
 .custom-cursor-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;        /* never block clicks */
+  z-index: 999999;
+  opacity: 1;
+  transition: opacity 120ms linear;
 }
-
-.custom-cursor {
-    width: 20px;
-    height: 20px;
-    background-color: black;
-    border-radius: 50%;
-    position: absolute;
-}
-
+.custom-cursor,
 .custom-cursor-large {
-    width: 40px;
-    height: 40px;
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 50%;
-    position: absolute;
-    transform: translate(-10px, -10px);
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+  transform: translate3d(0,0,0);
 }
+.custom-cursor { width: 20px; height: 20px; background: #000; }
+.custom-cursor-large { width: 40px; height: 40px; background: rgba(0,0,0,0.2); }
 
-.swiper-slide.showcase-card {
-    transition: transform 0.2s ease;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    will-change: transform;
-    overflow: hidden;
-    border-radius: 20px;
-    background: white;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-  }
-  
-  .swiper-slide.showcase-card img {
-    width: 100%;
-    height: auto;
-    display: block;
-    pointer-events: none;
-    user-select: none;
-  }
-  
+/* On touch devices, keep the native cursor/gestures */
+@media (hover: none), (pointer: coarse) {
+  .custom-cursor-container { display: none; }
+  html, body, * { cursor: auto !important; }
+}
