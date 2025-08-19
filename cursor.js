@@ -4,6 +4,9 @@ let firstMove = true;
 
 const customCursor = document.querySelector('.custom-cursor');
 
+// Make native cursor always invisible
+document.body.style.cursor = 'none';
+
 document.addEventListener('mousemove', (e) => {
   mouseX = e.clientX;
   mouseY = e.clientY;
