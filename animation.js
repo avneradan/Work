@@ -8,6 +8,7 @@ class CircularScrollEffect {
     this.currentRotation = 0;
     this.targetRotation = 0;
     this.isAnimating = false;
+    this.rotationSpeed = 0.02; // Adjust for smoother/faster animation
     
     this.init();
   }
@@ -28,8 +29,8 @@ class CircularScrollEffect {
     this.container.addEventListener('wheel', (e) => {
       e.preventDefault();
       
-      // Calculate rotation based on wheel delta
-      const delta = e.deltaY * 0.5; // Adjust sensitivity
+      // Calculate rotation based on wheel delta with better sensitivity
+      const delta = e.deltaY * 0.04; // Reduced sensitivity for more control
       this.targetRotation += delta;
       
       // Keep rotation within bounds
@@ -53,13 +54,14 @@ class CircularScrollEffect {
       startX = e.clientX;
       startRotation = this.targetRotation;
       this.container.style.cursor = 'grabbing';
+      e.preventDefault();
     });
     
     document.addEventListener('mousemove', (e) => {
       if (!isDragging) return;
       
       const deltaX = e.clientX - startX;
-      const rotationDelta = deltaX * 0.5; // Adjust sensitivity
+      const rotationDelta = deltaX * 0.4; // Better sensitivity for dragging
       this.targetRotation = startRotation + rotationDelta;
       this.isAnimating = true;
     });
@@ -88,7 +90,7 @@ class CircularScrollEffect {
       const diff = this.targetRotation - this.currentRotation;
       
       if (Math.abs(diff) > 0.1) {
-        this.currentRotation += diff * 0.1; // Adjust smoothness
+        this.currentRotation += diff * this.rotationSpeed;
         this.circle.style.transform = `rotate(${this.currentRotation}deg)`;
       } else {
         this.currentRotation = this.targetRotation;

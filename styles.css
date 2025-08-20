@@ -120,8 +120,8 @@
    
    .circular-scroll-circle {
      position: relative;
-     width: 800px;
-     height: 800px;
+     width: 1000px;
+     height: 1000px;
      transform-style: preserve-3d;
      will-change: transform;
    }
@@ -130,13 +130,13 @@
      position: absolute;
      top: 50%;
      left: 50%;
-     width: 250px;
-     height: 180px;
+     width: 320px;
+     height: 220px;
      transform-origin: 0 0;
      transform: 
        rotate(var(--angle)) 
-       translateX(400px) 
-       translateY(-90px);
+       translateX(500px) 
+       translateY(-110px);
      transition: transform 0.1s ease-out;
    }
    
@@ -144,30 +144,30 @@
      width: 100%;
      height: 100%;
      object-fit: cover;
-     border-radius: 12px;
-     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+     border-radius: 16px;
+     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
      transition: all 0.3s ease;
    }
    
    .circular-scroll-item:hover img {
-     transform: scale(1.05);
-     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+     transform: scale(1.08);
+     box-shadow: 0 35px 70px rgba(0, 0, 0, 0.25);
    }
    
    /* Responsive adjustments */
    @media (max-width: 1200px) {
      .circular-scroll-circle {
-       width: 700px;
-       height: 700px;
+       width: 900px;
+       height: 900px;
      }
      
      .circular-scroll-item {
-       width: 220px;
-       height: 160px;
+       width: 280px;
+       height: 200px;
        transform: 
          rotate(var(--angle)) 
-         translateX(350px) 
-         translateY(-80px);
+         translateX(450px) 
+         translateY(-100px);
      }
    }
    
@@ -183,17 +183,17 @@
      }
      
      .circular-scroll-circle {
-       width: 500px;
-       height: 500px;
+       width: 600px;
+       height: 600px;
      }
      
      .circular-scroll-item {
-       width: 180px;
-       height: 130px;
+       width: 220px;
+       height: 160px;
        transform: 
          rotate(var(--angle)) 
-         translateX(250px) 
-         translateY(-65px);
+         translateX(300px) 
+         translateY(-80px);
      }
    }
    
