@@ -71,157 +71,100 @@
    }
    
    /* =========================
-      3D Carousel
+      New Animation Section
       ========================= */
-   .carousel-section {
-     height: 100vh;
+   .animation-section {
      width: 100%;
+     min-height: 100vh;
      position: relative;
      overflow: hidden;
-     background: #000;
+   }
+   
+   /* Circular Scroll Effect */
+   .circular-scroll-container {
+     width: 100%;
+     height: 300vh; /* Extended height for scrolling */
+     position: relative;
+   }
+   
+   .circular-scroll-pin {
+     position: sticky;
+     top: 0;
+     width: 100%;
+     height: 100vh;
      display: flex;
      align-items: center;
      justify-content: center;
+     overflow: hidden;
    }
    
-   .carousel-container {
+   .circular-scroll-circle {
      position: relative;
-     width: 100%;
-     height: 100%;
-     perspective: 1200px;
-     perspective-origin: 50% 50%;
+     width: 1200px;
+     height: 1200px;
+     transform-style: preserve-3d;
+     will-change: transform;
    }
    
-   .carousel-track {
+   .circular-scroll-item {
      position: absolute;
      top: 50%;
      left: 50%;
-     transform-style: preserve-3d;
-     transform: translate(-50%, -50%);
+     width: 300px;
+     height: 200px;
+     transform-origin: 0 0;
+     transform: 
+       rotate(var(--angle)) 
+       translateX(600px) 
+       translateY(-100px);
+     transition: transform 0.1s ease-out;
+   }
+   
+   .circular-scroll-item img {
      width: 100%;
      height: 100%;
+     object-fit: cover;
+     border-radius: 12px;
+     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+     transition: all 0.3s ease;
    }
    
-   .carousel-item {
-     position: absolute;
-     width: 400px;
-     height: 600px;
-     transform-style: preserve-3d;
-     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-     cursor: pointer;
+   .circular-scroll-item:hover img {
+     transform: scale(1.05);
+     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
    }
    
-   .carousel-placeholder {
-     width: 100%;
-     height: 100%;
-     background: linear-gradient(135deg, #2a2a2a 0%, #404040 100%);
-     border-radius: 8px;
-     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     color: #fff;
-     font-family: 'Inter', sans-serif;
-     font-weight: 600;
-     font-size: 24px;
-     text-align: center;
-     padding: 40px;
-     box-sizing: border-box;
-     border: 1px solid rgba(255, 255, 255, 0.1);
-     backdrop-filter: blur(10px);
-     position: relative;
-     overflow: hidden;
+   /* Responsive adjustments */
+   @media (max-width: 1200px) {
+     .circular-scroll-circle {
+       width: 800px;
+       height: 800px;
+     }
+     
+     .circular-scroll-item {
+       width: 250px;
+       height: 170px;
+       transform: 
+         rotate(var(--angle)) 
+         translateX(400px) 
+         translateY(-85px);
+     }
    }
    
-   .carousel-placeholder::before {
-     content: '';
-     position: absolute;
-     top: 0;
-     left: 0;
-     right: 0;
-     bottom: 0;
-     background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
-     transform: translateX(-100%);
-     transition: transform 0.6s ease;
-   }
-   
-   .carousel-item:hover .carousel-placeholder::before {
-     transform: translateX(100%);
-   }
-   
-   /* Carousel item positions - proper 3D circle */
-   .carousel-item:nth-child(1) { 
-     transform: rotateY(0deg) translateZ(500px) scale(1);
-     opacity: 1;
-   }
-   .carousel-item:nth-child(2) { 
-     transform: rotateY(30deg) translateZ(500px) scale(0.9);
-     opacity: 0.8;
-   }
-   .carousel-item:nth-child(3) { 
-     transform: rotateY(60deg) translateZ(500px) scale(0.8);
-     opacity: 0.6;
-   }
-   .carousel-item:nth-child(4) { 
-     transform: rotateY(90deg) translateZ(500px) scale(0.7);
-     opacity: 0.4;
-   }
-   .carousel-item:nth-child(5) { 
-     transform: rotateY(120deg) translateZ(500px) scale(0.6);
-     opacity: 0.3;
-   }
-   .carousel-item:nth-child(6) { 
-     transform: rotateY(150deg) translateZ(500px) scale(0.5);
-     opacity: 0.2;
-   }
-   .carousel-item:nth-child(7) { 
-     transform: rotateY(180deg) translateZ(500px) scale(0.5);
-     opacity: 0.2;
-   }
-   .carousel-item:nth-child(8) { 
-     transform: rotateY(210deg) translateZ(500px) scale(0.6);
-     opacity: 0.3;
-   }
-   .carousel-item:nth-child(9) { 
-     transform: rotateY(240deg) translateZ(500px) scale(0.7);
-     opacity: 0.4;
-   }
-   .carousel-item:nth-child(10) { 
-     transform: rotateY(270deg) translateZ(500px) scale(0.8);
-     opacity: 0.6;
-   }
-   .carousel-item:nth-child(11) { 
-     transform: rotateY(300deg) translateZ(500px) scale(0.9);
-     opacity: 0.8;
-   }
-   .carousel-item:nth-child(12) { 
-     transform: rotateY(330deg) translateZ(500px) scale(1);
-     opacity: 1;
-   }
-   
-   /* Active state for center item */
-   .carousel-item.active {
-     transform: scale(1.1) !important;
-     opacity: 1 !important;
-     z-index: 10;
-   }
-   
-   /* Hover effects */
-   .carousel-item:hover {
-     transform: scale(1.05) !important;
-     z-index: 15;
-   }
-   
-   /* Smooth transitions for all transforms */
-   .carousel-item {
-     transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-   }
-   
-   .hero-container {
-     width: 96%;
-     height: 60vh;
-     border-radius: 16px;
-     background: #ffffff;
+   @media (max-width: 768px) {
+     .circular-scroll-circle {
+       width: 600px;
+       height: 600px;
+     }
+     
+     .circular-scroll-item {
+       width: 200px;
+       height: 140px;
+       transform: 
+         rotate(var(--angle)) 
+         translateX(300px) 
+         translateY(-70px);
+     }
    }
    
    .work {
