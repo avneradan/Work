@@ -2,6 +2,7 @@
    Fonts & Base
    ========================= */
    @import url('https://fonts.googleapis.com/css2?family=General+Sans:wght@400;700&display=swap');
+   @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
 
    * {
      margin: 0;
@@ -15,6 +16,19 @@
    
    /* Utility: opt a specific element back into the native cursor if needed */
    .allow-native-cursor { cursor: auto !important; }
+   
+   /* Instrument Serif font classes */
+   .instrument-serif-regular {
+     font-family: "Instrument Serif", serif;
+     font-weight: 400;
+     font-style: normal;
+   }
+   
+   .instrument-serif-regular-italic {
+     font-family: "Instrument Serif", serif;
+     font-weight: 400;
+     font-style: italic;
+   }
    
    body {
      display: flex;
