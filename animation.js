@@ -10,6 +10,13 @@ class CircularScrollEffect {
     this.isAnimating = false;
     this.rotationSpeed = 0.02; // Adjust for smoother/faster animation
     
+    // Touch variables for mobile
+    this.isTouchDevice = 'ontouchstart' in window;
+    this.touchStartX = 0;
+    this.touchStartY = 0;
+    this.touchStartRotation = 0;
+    this.isTouching = false;
+    
     this.init();
   }
   
@@ -21,6 +28,7 @@ class CircularScrollEffect {
     
     this.setupWheelListener();
     this.setupMouseMoveListener();
+    this.setupTouchListener();
     this.setupResizeListener();
     this.animate();
   }
@@ -73,6 +81,40 @@ class CircularScrollEffect {
     
     // Set initial cursor
     this.container.style.cursor = 'grab';
+  }
+  
+  setupTouchListener() {
+    if (!this.isTouchDevice) return;
+    
+    this.container.addEventListener('touchstart', (e) => {
+      const touch = e.touches[0];
+      this.touchStartX = touch.clientX;
+      this.touchStartY = touch.clientY;
+      this.touchStartRotation = this.targetRotation;
+      this.isTouching = true;
+    }, { passive: true });
+    
+    this.container.addEventListener('touchmove', (e) => {
+      if (!this.isTouching) return;
+      
+      const touch = e.touches[0];
+      const deltaX = touch.clientX - this.touchStartX;
+      const deltaY = touch.clientY - this.touchStartY;
+      
+      // Determine if this is a horizontal swipe (rotation) or vertical scroll
+      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 20) {
+        // Horizontal swipe - rotate the circle
+        e.preventDefault();
+        const rotationDelta = deltaX * 0.3;
+        this.targetRotation = this.touchStartRotation + rotationDelta;
+        this.isAnimating = true;
+      }
+      // If vertical scroll, let the browser handle it naturally
+    }, { passive: false });
+    
+    this.container.addEventListener('touchend', () => {
+      this.isTouching = false;
+    }, { passive: true });
   }
   
   setupResizeListener() {
