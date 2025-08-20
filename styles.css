@@ -54,7 +54,7 @@
    
    .hero {
      text-align: center;
-     height: 40vh;
+     height: 30vh;
      width: 100%;
      display: flex;
      flex-direction: column;
@@ -98,6 +98,9 @@
      width: 100%;
      position: relative;
      overflow: hidden;
+     display: flex;
+     align-items: flex-end; /* Align to bottom of viewport */
+     justify-content: center;
    }
    
    .circular-scroll-container {
@@ -108,14 +111,15 @@
    
    .circular-scroll-pin {
      position: absolute;
-     top: 0;
-     left: 0;
+     bottom: 0; /* Position at bottom */
+     left: 50%;
+     transform: translateX(-50%);
      width: 100%;
      height: 100%;
      display: flex;
-     align-items: center;
+     align-items: flex-end; /* Align circle to bottom */
      justify-content: center;
-     overflow: hidden;
+     overflow: visible; /* Allow pivot point to be visible */
    }
    
    .circular-scroll-circle {
@@ -124,6 +128,34 @@
      height: 1000px;
      transform-style: preserve-3d;
      will-change: transform;
+     margin-bottom: -500px; /* Pull up so center is at bottom of viewport */
+   }
+   
+   /* Pivot Point (Center of Circle) */
+   .circular-scroll-pivot {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     width: 20px;
+     height: 20px;
+     background: radial-gradient(circle, #333 0%, #111 100%);
+     border: 3px solid #fff;
+     border-radius: 50%;
+     transform: translate(-50%, -50%);
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+     z-index: 100;
+   }
+   
+   .circular-scroll-pivot::before {
+     content: '';
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     width: 8px;
+     height: 8px;
+     background: #fff;
+     border-radius: 50%;
+     transform: translate(-50%, -50%);
    }
    
    .circular-scroll-item {
@@ -159,6 +191,7 @@
      .circular-scroll-circle {
        width: 900px;
        height: 900px;
+       margin-bottom: -450px; /* Adjust for smaller circle */
      }
      
      .circular-scroll-item {
@@ -185,6 +218,7 @@
      .circular-scroll-circle {
        width: 600px;
        height: 600px;
+       margin-bottom: -300px; /* Adjust for smaller circle */
      }
      
      .circular-scroll-item {
@@ -194,6 +228,17 @@
          rotate(var(--angle)) 
          translateX(300px) 
          translateY(-80px);
+     }
+     
+     .circular-scroll-pivot {
+       width: 16px;
+       height: 16px;
+       border-width: 2px;
+     }
+     
+     .circular-scroll-pivot::before {
+       width: 6px;
+       height: 6px;
      }
    }
    
