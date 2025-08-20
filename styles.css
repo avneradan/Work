@@ -123,14 +123,14 @@
    }
    
    .circular-scroll-container {
-     width: 100%;
-     height: 100%;
+     width: 150%;
+     height: 150%;
      position: relative;
    }
    
    .circular-scroll-pin {
      position: absolute;
-     bottom: 0; /* Position at bottom */
+     bottom: -30VH; /* Position at bottom */
      left: 50%;
      transform: translateX(-50%);
      width: 100%;
@@ -143,7 +143,7 @@
    
    .circular-scroll-circle {
      position: relative;
-     width: 1000px;
+     width: 150VW;
      height: 1000px;
      transform-style: preserve-3d;
      will-change: transform;
@@ -204,7 +204,7 @@
    
    .circular-scroll-item:hover img {
      transform: scale(1.08);
-     box-shadow: 0 35px 70px rgba(0, 0, 0, 0.25);
+     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
    }
    
    /* Responsive adjustments */
