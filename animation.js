@@ -1,9 +1,13 @@
-// Circular Scroll Effect
+// Circular Scroll Effect - Viewport Only
 class CircularScrollEffect {
   constructor() {
     this.container = document.querySelector('.circular-scroll-container');
     this.circle = document.querySelector('.circular-scroll-circle');
     this.pin = document.querySelector('.circular-scroll-pin');
+    
+    this.currentRotation = 0;
+    this.targetRotation = 0;
+    this.isAnimating = false;
     
     this.init();
   }
@@ -14,38 +18,85 @@ class CircularScrollEffect {
       return;
     }
     
-    this.setupScrollListener();
+    this.setupWheelListener();
+    this.setupMouseMoveListener();
     this.setupResizeListener();
+    this.animate();
   }
   
-  setupScrollListener() {
-    window.addEventListener('scroll', () => {
-      this.updateRotation();
+  setupWheelListener() {
+    this.container.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      
+      // Calculate rotation based on wheel delta
+      const delta = e.deltaY * 0.5; // Adjust sensitivity
+      this.targetRotation += delta;
+      
+      // Keep rotation within bounds
+      if (this.targetRotation > 360) {
+        this.targetRotation -= 360;
+      } else if (this.targetRotation < -360) {
+        this.targetRotation += 360;
+      }
+      
+      this.isAnimating = true;
+    }, { passive: false });
+  }
+  
+  setupMouseMoveListener() {
+    let isDragging = false;
+    let startX = 0;
+    let startRotation = 0;
+    
+    this.container.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.clientX;
+      startRotation = this.targetRotation;
+      this.container.style.cursor = 'grabbing';
     });
+    
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      
+      const deltaX = e.clientX - startX;
+      const rotationDelta = deltaX * 0.5; // Adjust sensitivity
+      this.targetRotation = startRotation + rotationDelta;
+      this.isAnimating = true;
+    });
+    
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      this.container.style.cursor = 'grab';
+    });
+    
+    // Set initial cursor
+    this.container.style.cursor = 'grab';
   }
   
   setupResizeListener() {
     window.addEventListener('resize', () => {
-      this.updateRotation();
+      // Reset rotation on resize to maintain visual consistency
+      this.currentRotation = 0;
+      this.targetRotation = 0;
+      this.circle.style.transform = `rotate(0deg)`;
     });
   }
   
-  updateRotation() {
-    const scrollTop = window.pageYOffset;
-    const containerTop = this.container.offsetTop;
-    const containerHeight = this.container.offsetHeight;
-    const viewportHeight = window.innerHeight;
+  animate() {
+    if (this.isAnimating) {
+      // Smooth interpolation between current and target rotation
+      const diff = this.targetRotation - this.currentRotation;
+      
+      if (Math.abs(diff) > 0.1) {
+        this.currentRotation += diff * 0.1; // Adjust smoothness
+        this.circle.style.transform = `rotate(${this.currentRotation}deg)`;
+      } else {
+        this.currentRotation = this.targetRotation;
+        this.isAnimating = false;
+      }
+    }
     
-    // Calculate scroll progress within the container
-    const scrollProgress = Math.max(0, Math.min(1, 
-      (scrollTop - containerTop) / (containerHeight - viewportHeight)
-    ));
-    
-    // Rotate the circle based on scroll progress
-    // Full rotation (360 degrees) over the scroll distance
-    const rotation = scrollProgress * 360;
-    
-    this.circle.style.transform = `rotate(${rotation}deg)`;
+    requestAnimationFrame(() => this.animate());
   }
 }
 
