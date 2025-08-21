@@ -1,0 +1,31 @@
+{
+  "name": "portfolio-website",
+  "version": "2.0.0",
+  "description": "Portfolio website with modern, modular architecture",
+  "main": "js/app.js",
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000",
+    "test": "echo 'Open browser console to see architecture tests'"
+  },
+  "keywords": [
+    "portfolio",
+    "modular",
+    "architecture",
+    "vanilla-js",
+    "es6-modules"
+  ],
+  "author": "Avner Adan",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {},
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
