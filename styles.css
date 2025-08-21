@@ -143,11 +143,11 @@
    
    .circular-scroll-circle {
      position: relative;
-     width: 150VW;
-     height: 1000px;
+     width: 1400px; /* Increased from 1000px */
+     height: 1400px; /* Increased from 1000px */
      transform-style: preserve-3d;
      will-change: transform;
-     margin-bottom: -500px; /* Pull up so center is at bottom of viewport */
+     margin-bottom: -700px; /* Adjust for larger circle */
      margin-top: 200px; /* Add offset to move circle down and prevent top cards from being cut off */
    }
    
@@ -183,13 +183,14 @@
      position: absolute;
      top: 50%;
      left: 50%;
-     width: 320px;
-     height: 220px;
+     width: 220px*2;
+     height: 320px*2;
      transform-origin: 0 0;
      transform: 
        rotate(var(--angle)) 
-       translateX(500px) 
-       translateY(-110px);
+       translateX(700px) /* Increased from 500px to match larger radius */
+       translateY(-110px)
+       rotate(90deg); /* Rotate each item 90 degrees to make them upright */
      transition: transform 0.1s ease-out;
    }
    
@@ -210,9 +211,9 @@
    /* Responsive adjustments */
    @media (max-width: 1200px) {
      .circular-scroll-circle {
-       width: 900px;
-       height: 900px;
-       margin-bottom: -450px; /* Adjust for smaller circle */
+       width: 1200px; /* Increased from 900px */
+       height: 1200px; /* Increased from 900px */
+       margin-bottom: -600px; /* Adjust for larger circle */
        margin-top: 180px; /* Adjust offset for medium screens */
      }
      
@@ -221,8 +222,9 @@
        height: 200px;
        transform: 
          rotate(var(--angle)) 
-         translateX(450px) 
-         translateY(-100px);
+         translateX(600px) /* Increased from 450px to match larger radius */
+         translateY(-100px)
+         rotate(90deg); /* Rotate each item 90 degrees */
      }
    }
    
@@ -238,9 +240,9 @@
      }
      
      .circular-scroll-circle {
-       width: 600px;
-       height: 600px;
-       margin-bottom: -300px; /* Adjust for smaller circle */
+       width: 800px; /* Increased from 600px */
+       height: 800px; /* Increased from 600px */
+       margin-bottom: -400px; /* Adjust for larger circle */
        margin-top: 120px; /* Adjust offset for mobile screens */
      }
      
@@ -249,8 +251,9 @@
        height: 160px;
        transform: 
          rotate(var(--angle)) 
-         translateX(300px) 
-         translateY(-80px);
+         translateX(400px) /* Increased from 300px to match larger radius */
+         translateY(-80px)
+         rotate(90deg); /* Rotate each item 90 degrees */
      }
      
      .circular-scroll-pivot {
