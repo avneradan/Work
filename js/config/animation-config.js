@@ -20,7 +20,7 @@ export const ANIMATION_CONFIG = {
   },
   horizontalGallery: {
     scrollSpeed: 0.5,
-    gap: 16,
+    gap: 20,
     pauseOnHover: true
   }
 };
