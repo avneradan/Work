@@ -457,14 +457,15 @@
      left: 0; right: 0; bottom: 0;
      height: 80vh;
      /*max-height: 720px;*/
-     background: #f3f4f6; /* gray-100 */
-     border-top-left-radius: 10px;
-     border-top-right-radius: 10px;
+     background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+     border-top-left-radius: 20px;
+     border-top-right-radius: 20px;
      transform: translateY(100%);
      transition: transform 320ms cubic-bezier(.22,.61,.36,1);
      display: flex;
      flex-direction: column;
      outline: none;
+     box-shadow: 0 -20px 40px rgba(0,0,0,0.1);
    }
    #drawer-root[data-open="true"] .drawer-panel { transform: translateY(0); }
    
@@ -479,79 +480,169 @@
    .drawer-close:hover { opacity: 1; }
    
    .drawer-scroll { flex: 1; overflow: auto; }
-   .drawer-content { max-width: 940px; margin: 0 auto; padding: 0 16px 28px 16px; }
-   .drawer-title { font: 500 18px/1.4 'Inter', system-ui, sans-serif; color: #111; margin-bottom: 16px; }
-   .drawer-caption { color: #4b5563; font: 400 14px/1.6 'Inter', system-ui, sans-serif; margin-bottom: 24px; }
-   #drawer-image { width: 100%; height: auto; display: block; border-radius: 12px; background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+   .drawer-content { 
+     max-width: 1200px; 
+     margin: 0 auto; 
+     padding: 0 24px 32px 24px; 
+   }
+   
+   /* Project Hero Section */
+   .project-hero {
+     display: grid;
+     grid-template-columns: 1fr 2fr;
+     gap: 32px;
+     margin-bottom: 40px;
+     align-items: start;
+   }
+   
+   .project-info {
+     padding: 24px;
+     background: #f8fafc;
+     border-radius: 16px;
+     border: 1px solid #e2e8f0;
+   }
+   
+   .drawer-title { 
+     font: 600 24px/1.3 'Inter', system-ui, sans-serif; 
+     color: #0f172a; 
+     margin-bottom: 12px; 
+   }
+   
+   .drawer-caption { 
+     color: #475569; 
+     font: 400 16px/1.6 'Inter', system-ui, sans-serif; 
+     margin-bottom: 0; 
+   }
+   
+   .project-image-container {
+     background: #fff;
+     border-radius: 16px;
+     padding: 16px;
+     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+     border: 1px solid #e2e8f0;
+   }
+   
+   #drawer-image { 
+     width: 100%; 
+     height: auto; 
+     display: block; 
+     border-radius: 12px; 
+     background: #fff; 
+   }
    
    @media (min-width: 1024px) {
      .drawer-panel { height: 95VH; }
    }
    
    /* =========================
-      Horizontal Scrolling Gallery
+      Project Gallery Section
       ========================= */
-   .gallery-section {
-     margin-top: 32px;
+   .project-gallery-section {
+     background: #f8fafc;
+     border-radius: 20px;
+     padding: 32px;
+     border: 1px solid #e2e8f0;
    }
    
-   .gallery-label {
-     font: 500 16px/1.4 'Inter', system-ui, sans-serif;
-     color: #111;
-     margin-bottom: 16px;
+   .gallery-header {
      text-align: center;
+     margin-bottom: 32px;
    }
    
-   .horizontal-gallery {
-     overflow: hidden;
+   .gallery-title {
+     font: 600 20px/1.4 'Inter', system-ui, sans-serif;
+     color: #0f172a;
+     margin-bottom: 8px;
+   }
+   
+   .gallery-subtitle {
+     font: 400 14px/1.5 'Inter', system-ui, sans-serif;
+     color: #64748b;
+   }
+   
+   .gallery-container {
+     overflow: auto; /* Enable scrolling */
      position: relative;
-     background: #2a2a2a;
-     border-radius: 12px;
+     background: #fff;
+     border-radius: 16px;
      padding: 24px;
+     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+     border: 1px solid #e2e8f0;
+     scrollbar-width: thin;
+     scrollbar-color: #cbd5e1 #f1f5f9;
+   }
+   
+   /* Custom scrollbar styling */
+   .gallery-container::-webkit-scrollbar {
+     height: 8px;
+     width: 8px;
+   }
+   
+   .gallery-container::-webkit-scrollbar-track {
+     background: #f1f5f9;
+     border-radius: 4px;
+   }
+   
+   .gallery-container::-webkit-scrollbar-thumb {
+     background: #cbd5e1;
+     border-radius: 4px;
+   }
+   
+   .gallery-container::-webkit-scrollbar-thumb:hover {
+     background: #94a3b8;
    }
    
    .gallery-track {
      display: flex;
-     gap: 20px;
+     gap: 16px;
      will-change: transform;
      align-items: center;
-     /* Animation is now handled by JavaScript for better control */
+     /* Create seamless loop with proper spacing */
+     padding: 0 50%; /* Add padding to center first image */
+     min-width: max-content; /* Ensure track expands to fit all items */
+     /* Ensure smooth scrolling */
+     scroll-behavior: smooth;
    }
    
    .gallery-item {
      flex: 0 0 auto;
-     width: 180px;
-     height: 180px;
-     border-radius: 12px;
+     width: 200px; /* Fixed width for consistent sizing */
+     height: 150px; /* Fixed height for consistent sizing */
+     border-radius: 16px;
      overflow: hidden;
      background: #fff;
-     box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
      transition: all 0.3s ease;
-     border: 2px solid transparent;
+     border: 1px solid #e2e8f0;
      position: relative;
+     cursor: pointer;
    }
    
-   .gallery-item:hover {
-     transform: translateY(-2px);
-     box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-     border-color: #6366f1;
+   .gallery-item.main-item {
+     border: 2px solid #3b82f6;
+     box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
    }
    
-   .gallery-item::after {
-     content: '';
+   .gallery-item {
+     /* Remove hover effects - keep static appearance */
+   }
+   
+   .item-overlay {
      position: absolute;
-     top: 0;
+     bottom: 0;
      left: 0;
      right: 0;
-     bottom: 0;
-     background: linear-gradient(45deg, rgba(99, 102, 241, 0.1), transparent);
-     opacity: 0;
-     transition: opacity 0.3s ease;
-     pointer-events: none;
+     background: linear-gradient(transparent, rgba(0,0,0,0.7));
+     color: #fff;
+     padding: 12px 8px 8px;
+     opacity: 1; /* Always visible */
+     transform: translateY(0); /* Always in position */
    }
    
-   .gallery-item:hover::after {
-     opacity: 1;
+   .item-label {
+     font: 500 12px/1.2 'Inter', system-ui, sans-serif;
+     display: block;
+     text-align: center;
    }
    
    .gallery-item img {
@@ -559,12 +650,31 @@
      height: 100%;
      object-fit: cover;
      display: block;
+     min-width: 100%;
+     min-height: 100%;
    }
    
-   /* Pause animation on hover */
-   .horizontal-gallery:hover .gallery-track {
-     animation-play-state: paused;
+   /* Fallback for images that fail to load */
+   .gallery-item img:not([src]), 
+   .gallery-item img[src=""],
+   .gallery-item img[src*="undefined"] {
+     background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
+     border: 2px dashed #d1d5db;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     color: #6b7280;
+     font-size: 12px;
+     text-align: center;
    }
+   
+   .gallery-item img:not([src])::after, 
+   .gallery-item img[src=""]::after,
+   .gallery-item img[src*="undefined"]::after {
+     content: 'Image not loaded';
+   }
+   
+   /* Animation disabled - no hover pause needed */
    
    /* Reduced motion support */
    @media (prefers-reduced-motion: reduce) {
@@ -577,15 +687,37 @@
    /* Animation is now handled by JavaScript for better control */
    
    /* Responsive adjustments */
+   @media (max-width: 1024px) {
+     .project-hero {
+       grid-template-columns: 1fr;
+       gap: 24px;
+     }
+     
+     .project-info {
+       order: 2;
+     }
+     
+     .project-image-container {
+       order: 1;
+     }
+   }
+   
    @media (max-width: 768px) {
-     .horizontal-gallery {
-       padding: 16px;
-       margin-top: 24px;
+     .drawer-content {
+       padding: 0 16px 24px 16px;
+     }
+     
+     .project-gallery-section {
+       padding: 24px 20px;
+     }
+     
+     .gallery-container {
+       padding: 20px 16px;
      }
      
      .gallery-item {
-       width: 140px;
-       height: 140px;
+       width: 160px;
+       height: 120px;
      }
      
      .gallery-track {
@@ -595,12 +727,16 @@
    
    @media (max-width: 480px) {
      .gallery-item {
-       width: 120px;
-       height: 120px;
+       width: 140px;
+       height: 105px;
      }
      
      .gallery-track {
        gap: 12px;
+     }
+     
+     .project-gallery-section {
+       padding: 20px 16px;
      }
    }
    

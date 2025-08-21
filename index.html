@@ -67,78 +67,131 @@
       <div class="drawer-handle" aria-hidden="true"></div>
       <button class="drawer-close" aria-label="Close Drawer">×</button>
       <div class="drawer-scroll">
-        <div class="drawer-content">
-          <h2 id="drawer-title" class="drawer-title">Selected Work</h2>
-          <img id="drawer-image" alt="Selected item"/>
-          <p id="drawer-caption" class="drawer-caption"></p>
-          
-          <!-- Horizontal Scrolling Gallery -->
-          <div class="gallery-section">
-            <h3 class="gallery-label">Project Gallery</h3>
-            <div class="horizontal-gallery">
-            <div class="gallery-track">
-              <!-- Original selected image -->
-              <div class="gallery-item">
-                <img id="gallery-main-image" alt="Main project image"/>
-              </div>
-              
-              <!-- Additional placeholder images -->
-              <div class="gallery-item">
-                <img src="media/1.png" alt="Project detail 1"/>
-              </div>
-              <div class="gallery-item">
-                <img src="media/2.png" alt="Project detail 2"/>
-              </div>
-              <div class="gallery-item">
-                <img src="media/3.png" alt="Project detail 3"/>
-              </div>
-              <div class="gallery-item">
-                <img src="media/4.png" alt="Project detail 4"/>
-              </div>
-              <div class="gallery-item">
-                <img src="media/5.png" alt="Project detail 5"/>
-              </div>
-              <div class="gallery-item">
-                <img src="media/6.png" alt="Project detail 6"/>
-              </div>
-              <div class="gallery-item">
-                <img src="media/7.png" alt="Project detail 7"/>
-              </div>
-              <div class="gallery-item">
-                <img src="media/8.png" alt="Project detail 8"/>
-              </div>
-              
-              <!-- Duplicate items for seamless loop -->
-              <div class="gallery-item">
-                <img id="gallery-main-image-duplicate" alt="Main project image"/>
-              </div>
-              <div class="gallery-item">
-                <img src="media/1.png" alt="Project detail 1"/>
-              </div>
-              <div class="gallery-item">
-                <img src="media/2.png" alt="Project detail 2"/>
-              </div>
-              <div class="gallery-item">
-                <img src="media/3.png" alt="Project detail 3"/>
-              </div>
-              <div class="gallery-item">
-                <img src="media/4.png" alt="Project detail 4"/>
-              </div>
-              <div class="gallery-item">
-                <img src="media/5.png" alt="Project detail 5"/>
-              </div>
-              <div class="gallery-item">
-                <img src="media/6.png" alt="Project detail 6"/>
-              </div>
-              <div class="gallery-item">
-                <img src="media/7.png" alt="Project detail 7"/>
-              </div>
-              <div class="gallery-item">
-                <img src="media/8.png" alt="Project detail 8"/>
+          <!-- Project Gallery Section -->
+          <div class="project-gallery-section">
+            <div class="gallery-header">
+             <h3 class="gallery-title">Project Gallery</h3>
+              <!--<p class="gallery-subtitle">Additional project details and screenshots</p>-->
+            </div>
+            
+            <div class="gallery-container">
+              <div class="gallery-track">
+                <!-- Main project image (first) -->
+                <div class="gallery-item main-item">
+                  <img id="gallery-main-image" alt="Main project image"/>
+                  <div class="item-overlay">
+                    <span class="item-label">Main Project</span>
+                  </div>
+                </div>
+                
+                <!-- Project detail images -->
+                <div class="gallery-item">
+                  <img src="media/1.1.png" alt="Project detail 1"/>
+                  <div class="item-overlay">
+                    <span class="item-label">Detail 1</span>
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img src="media/1.2.png" alt="Project detail 2"/>
+                  <div class="item-overlay">
+                    <span class="item-label">Detail 2</span>
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img src="media/1.3.png" alt="Project detail 3"/>
+                  <div class="item-overlay">
+                    <span class="item-label">Detail 3</span>
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img src="media/1.4.png" alt="Project detail 4"/>
+                  <div class="item-overlay">
+                    <span class="item-label">Detail 4</span>
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img src="media/1.5.png" alt="Project detail 5"/>
+                  <div class="item-overlay">
+                    <span class="item-label">Detail 5</span>
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img src="media/1.6.png" alt="Project detail 6"/>
+                  <div class="item-overlay">
+                    <span class="item-label">Detail 6</span>
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img src="media/1.7.png" alt="Project detail 7"/>
+                  <div class="item-overlay">
+                    <span class="item-label">Detail 7</span>
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img src="media/1.8.png" alt="Project detail 8"/>
+                  <div class="item-overlay">
+                    <span class="item-label">Detail 8</span>
+                  </div>
+                </div>
+                
+                <!-- Duplicate items for seamless loop -->
+                <div class="gallery-item main-item">
+                  <img id="gallery-main-image-duplicate" alt="Main project image"/>
+                  <div class="item-overlay">
+                    <span class="item-label">Main Project</span>
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img src="media/1.1.png" alt="Project detail 1"/>
+                  <div class="item-overlay">
+                    <span class="item-label">Detail 1</span>
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img src="media/1.2.png" alt="Project detail 2"/>
+                  <div class="item-overlay">
+                    <span class="item-label">Detail 2</span>
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img src="media/1.3.png" alt="Project detail 3"/>
+                  <div class="item-overlay">
+                    <span class="item-label">Detail 3</span>
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img src="media/1.4.png" alt="Project detail 4"/>
+                  <div class="item-overlay">
+                    <span class="item-label">Detail 4</span>
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img src="media/1.5.png" alt="Project detail 5"/>
+                  <div class="item-overlay">
+                    <span class="item-label">Detail 5</span>
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img src="media/1.6.png" alt="Project detail 6"/>
+                  <div class="item-overlay">
+                    <span class="item-label">Detail 6</span>
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img src="media/1.7.png" alt="Project detail 7"/>
+                  <div class="item-overlay">
+                    <span class="item-label">Detail 7</span>
+                  </div>
+                </div>
+                <div class="gallery-item">
+                  <img src="media/1.8.png" alt="Project detail 8"/>
+                  <div class="item-overlay">
+                    <span class="item-label">Detail 8</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </div>
       </div>
     </aside>

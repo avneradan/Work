@@ -163,12 +163,16 @@ export class CircularScrollManager {
   }
   
   handleItemClick(img, idx) {
+    console.log('Item clicked:', img.src, img.alt, idx);
+    
     // Emit event for drawer manager
     globalEventBus.emit('itemSelected', {
       src: img.src,
       alt: img.alt || `Item ${idx + 1}`,
       caption: img.alt || `Item ${idx + 1}`
     });
+    
+    console.log('Emitted itemSelected event');
   }
   
   normalizeRotation() {

@@ -63,24 +63,30 @@ export class DrawerManager {
   }
   
   populateDrawer(data) {
+    console.log('Populating drawer with data:', data);
+    
     if (this.elements.image && data.src) {
       this.elements.image.src = data.src;
       this.elements.image.alt = data.alt || 'Selected item';
+      console.log('Set main drawer image:', data.src);
     }
     
     if (this.elements.caption && data.caption) {
       this.elements.caption.textContent = data.caption;
+      console.log('Set drawer caption:', data.caption);
     }
     
     // Populate horizontal gallery with the selected image
     if (this.elements.galleryMainImage && data.src) {
       this.elements.galleryMainImage.src = data.src;
       this.elements.galleryMainImage.alt = data.alt || 'Main project image';
+      console.log('Set gallery main image:', data.src);
     }
     
     if (this.elements.galleryMainImageDuplicate && data.src) {
       this.elements.galleryMainImageDuplicate.src = data.src;
       this.elements.galleryMainImageDuplicate.alt = data.alt || 'Main project image';
+      console.log('Set gallery main image duplicate:', data.src);
     }
   }
   

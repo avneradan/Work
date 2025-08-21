@@ -21,10 +21,18 @@ export class EventBus {
   }
   
   emit(event, data) {
-    if (!this.events[event]) return;
+    console.log(`EventBus: Emitting ${event} with data:`, data);
     
-    this.events[event].forEach(callback => {
+    if (!this.events[event]) {
+      console.warn(`EventBus: No listeners for event ${event}`);
+      return;
+    }
+    
+    console.log(`EventBus: Found ${this.events[event].length} listeners for ${event}`);
+    
+    this.events[event].forEach((callback, index) => {
       try {
+        console.log(`EventBus: Calling listener ${index} for ${event}`);
         callback(data);
       } catch (error) {
         console.error(`Error in event handler for ${event}:`, error);

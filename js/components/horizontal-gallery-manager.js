@@ -28,25 +28,41 @@ export class HorizontalGalleryManager {
     this.elements.track = DOMUtils.querySelector('.gallery-track');
     this.elements.items = DOMUtils.querySelectorAll('.gallery-item');
     
+    console.log('Gallery track found:', this.elements.track);
+    console.log('Gallery items found:', this.elements.items.length);
+    
     if (!this.elements.track || this.elements.items.length === 0) {
       console.warn('Horizontal gallery elements not found');
       return;
     }
     
+    // Check if images are loading properly
+    this.elements.items.forEach((item, index) => {
+      const img = item.querySelector('img');
+      if (img) {
+        console.log(`Item ${index}:`, img.src, img.alt);
+        
+        // Add error handling for images
+        img.addEventListener('error', () => {
+          console.error(`Failed to load image: ${img.src}`);
+        });
+        
+        img.addEventListener('load', () => {
+          console.log(`Successfully loaded image: ${img.src}`);
+        });
+      }
+    });
+    
     this.isActive = true;
   }
   
   setupEventListeners() {
-    // Pause animation on hover (if enabled in config)
-    if (this.elements.track && ANIMATION_CONFIG.horizontalGallery.pauseOnHover) {
-      DOMUtils.addEventListener(this.elements.track, 'mouseenter', this.pauseAnimation.bind(this));
-      DOMUtils.addEventListener(this.elements.track, 'mouseleave', this.resumeAnimation.bind(this));
-    }
+    // Animation disabled - no hover pause needed
     
     // Handle window resize
     window.addEventListener('resize', this.handleResize.bind(this));
     
-    // Listen for drawer events to pause/resume
+    // Listen for drawer events (but no need to pause/resume animation)
     globalEventBus.on('drawerOpened', this.handleDrawerOpened.bind(this));
     globalEventBus.on('drawerClosed', this.handleDrawerClosed.bind(this));
   }
@@ -69,45 +85,29 @@ export class HorizontalGalleryManager {
   }
   
   startAnimation() {
+    // Animation disabled - gallery will remain static
     if (!this.isActive) return;
     
-    const animate = () => {
-      if (!this.isActive) return;
-      
-      this.updateScroll();
-      this.animationId = requestAnimationFrame(animate);
-    };
-    
-    animate();
+    // No animation loop needed
+    console.log('Gallery animation disabled - gallery remains static');
   }
   
   updateScroll() {
+    // Animation disabled - no scroll updates needed
     if (!this.elements.track) return;
     
-    // Update scroll position
-    this.currentScrollX -= this.scrollSpeed;
-    
-    // Reset position when we've scrolled one full set of items
-    const resetPoint = this.trackWidth / 2;
-    if (Math.abs(this.currentScrollX) >= resetPoint) {
-      this.currentScrollX = 0;
-    }
-    
-    // Apply transform
-    DOMUtils.setStyle(this.elements.track, 'transform', `translateX(${this.currentScrollX}px)`);
+    // Keep gallery at original position with proper padding
+    DOMUtils.setStyle(this.elements.track, 'transform', 'translateX(0px)');
   }
   
   pauseAnimation() {
-    if (this.animationId) {
-      cancelAnimationFrame(this.animationId);
-      this.animationId = null;
-    }
+    // Animation disabled - no need to pause
+    console.log('Animation pause called but animation is disabled');
   }
   
   resumeAnimation() {
-    if (!this.animationId && this.isActive) {
-      this.startAnimation();
-    }
+    // Animation disabled - no need to resume
+    console.log('Animation resume called but animation is disabled');
   }
   
   handleResize() {
@@ -115,26 +115,48 @@ export class HorizontalGalleryManager {
   }
   
   handleDrawerOpened() {
-    // Pause animation when drawer is open
-    this.pauseAnimation();
+    // Center the first image when drawer opens
+    this.centerFirstImage();
+    console.log('Drawer opened - gallery centered on first image');
   }
   
   handleDrawerClosed() {
-    // Resume animation when drawer is closed
-    this.resumeAnimation();
+    // Animation disabled - no need to resume
+    console.log('Drawer closed - gallery remains static');
   }
   
   setScrollSpeed(speed) {
     this.scrollSpeed = speed;
   }
   
+  centerFirstImage() {
+    if (!this.elements.track || !this.elements.items.length) return;
+    
+    // Calculate the center position for the first image
+    const container = this.elements.track.parentElement;
+    if (!container) return;
+    
+    const containerWidth = container.clientWidth;
+    const firstItem = this.elements.items[0];
+    const itemWidth = firstItem.offsetWidth;
+    const gap = parseInt(getComputedStyle(this.elements.track).gap) || 16;
+    
+    // Calculate scroll position to center the first image
+    // Account for the left padding (50% of container width)
+    const leftPadding = containerWidth * 0.5;
+    const scrollPosition = leftPadding - (containerWidth - itemWidth) / 2;
+    
+    // Smooth scroll to center position
+    container.scrollTo({
+      left: Math.max(0, scrollPosition),
+      behavior: 'smooth'
+    });
+  }
+  
   destroy() {
     this.isActive = false;
     
-    if (this.animationId) {
-      cancelAnimationFrame(this.animationId);
-      this.animationId = null;
-    }
+    // No animation to clean up
     
     // Remove event listeners
     window.removeEventListener('resize', this.handleResize);

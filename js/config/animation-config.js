@@ -19,9 +19,10 @@ export const ANIMATION_CONFIG = {
     escapeKey: 'Escape'
   },
   horizontalGallery: {
-    scrollSpeed: 0.5,
-    gap: 20,
-    pauseOnHover: true
+    scrollSpeed: 0, // Animation disabled
+    gap: 16,
+    pauseOnHover: false, // No need to pause on hover since there's no animation
+    animationEnabled: false
   }
 };
 
