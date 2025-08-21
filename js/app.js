@@ -3,6 +3,7 @@ import { CursorManager } from './components/cursor-manager.js';
 import { DrawerManager } from './components/drawer-manager.js';
 import { CircularScrollManager } from './components/circular-scroll-manager.js';
 import { ShowcaseCardManager } from './components/showcase-card-manager.js';
+import { HorizontalGalleryManager } from './components/horizontal-gallery-manager.js';
 import { globalEventBus } from './utils/event-bus.js';
 
 export class App {
@@ -31,6 +32,7 @@ export class App {
     this.components.drawer = new DrawerManager();
     this.components.circularScroll = new CircularScrollManager();
     this.components.showcaseCards = new ShowcaseCardManager();
+    this.components.horizontalGallery = new HorizontalGalleryManager();
   }
   
   setupGlobalEventHandlers() {

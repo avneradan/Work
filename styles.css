@@ -488,3 +488,69 @@
      .drawer-panel { height: 95VH; }
    }
    
+   /* =========================
+      Horizontal Scrolling Gallery
+      ========================= */
+   .horizontal-gallery {
+     margin-top: 24px;
+     overflow: hidden;
+     position: relative;
+   }
+   
+   .gallery-track {
+     display: flex;
+     gap: 16px;
+     will-change: transform;
+     /* Animation is now handled by JavaScript for better control */
+   }
+   
+   .gallery-item {
+     flex: 0 0 auto;
+     width: 200px;
+     height: 150px;
+     border-radius: 8px;
+     overflow: hidden;
+     background: #fff;
+     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+   }
+   
+   .gallery-item:hover {
+     transform: translateY(-4px);
+     box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+   }
+   
+   .gallery-item img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     display: block;
+   }
+   
+   /* Pause animation on hover */
+   .horizontal-gallery:hover .gallery-track {
+     animation-play-state: paused;
+   }
+   
+   /* Reduced motion support */
+   @media (prefers-reduced-motion: reduce) {
+     .gallery-track {
+       animation: none !important;
+     }
+   }
+   
+   /* The loop moves one "half" width for seamless scrolling */
+   /* Animation is now handled by JavaScript for better control */
+   
+   /* Responsive adjustments */
+   @media (max-width: 768px) {
+     .gallery-item {
+       width: 160px;
+       height: 120px;
+     }
+     
+     .gallery-track {
+       gap: 12px;
+     }
+   }
+   

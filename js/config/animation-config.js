@@ -17,6 +17,11 @@ export const ANIMATION_CONFIG = {
   drawer: {
     animationDuration: 300,
     escapeKey: 'Escape'
+  },
+  horizontalGallery: {
+    scrollSpeed: 0.5,
+    gap: 16,
+    pauseOnHover: true
   }
 };
 

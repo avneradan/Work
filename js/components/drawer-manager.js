@@ -25,6 +25,10 @@ export class DrawerManager {
     this.elements.image = DOMUtils.querySelector(SELECTORS.drawer.image);
     this.elements.caption = DOMUtils.querySelector(SELECTORS.drawer.caption);
     
+    // Horizontal gallery elements
+    this.elements.galleryMainImage = DOMUtils.querySelector('#gallery-main-image');
+    this.elements.galleryMainImageDuplicate = DOMUtils.querySelector('#gallery-main-image-duplicate');
+    
     if (!this.elements.root) {
       console.warn('Drawer root element not found');
       return;
@@ -66,6 +70,17 @@ export class DrawerManager {
     
     if (this.elements.caption && data.caption) {
       this.elements.caption.textContent = data.caption;
+    }
+    
+    // Populate horizontal gallery with the selected image
+    if (this.elements.galleryMainImage && data.src) {
+      this.elements.galleryMainImage.src = data.src;
+      this.elements.galleryMainImage.alt = data.alt || 'Main project image';
+    }
+    
+    if (this.elements.galleryMainImageDuplicate && data.src) {
+      this.elements.galleryMainImageDuplicate.src = data.src;
+      this.elements.galleryMainImageDuplicate.alt = data.alt || 'Main project image';
     }
   }
   
