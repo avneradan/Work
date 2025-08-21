@@ -16,6 +16,14 @@ class CircularScrollEffect {
     this.touchStartY = 0;
     this.touchStartRotation = 0;
     this.isTouching = false;
+
+    // Drawer elements
+    this.drawerRoot = document.getElementById('drawer-root');
+    this.drawerOverlay = this.drawerRoot?.querySelector('.drawer-overlay');
+    this.drawerPanel = this.drawerRoot?.querySelector('.drawer-panel');
+    this.drawerCloseBtn = this.drawerRoot?.querySelector('.drawer-close');
+    this.drawerImageEl = this.drawerRoot?.querySelector('#drawer-image');
+    this.drawerCaptionEl = this.drawerRoot?.querySelector('#drawer-caption');
     
     this.init();
   }
@@ -30,6 +38,8 @@ class CircularScrollEffect {
     this.setupMouseMoveListener();
     this.setupTouchListener();
     this.setupResizeListener();
+    this.setupDrawerInteractions();
+    this.setupItemClickHandlers();
     this.animate();
   }
   
@@ -115,6 +125,47 @@ class CircularScrollEffect {
     this.container.addEventListener('touchend', () => {
       this.isTouching = false;
     }, { passive: true });
+  }
+
+  setupDrawerInteractions() {
+    if (!this.drawerRoot) return;
+    const close = () => {
+      this.drawerRoot.setAttribute('data-open', 'false');
+      this.drawerRoot.setAttribute('aria-hidden', 'true');
+    };
+    const open = () => {
+      this.drawerRoot.setAttribute('data-open', 'true');
+      this.drawerRoot.setAttribute('aria-hidden', 'false');
+    };
+    this.openDrawer = open;
+    this.closeDrawer = close;
+
+    this.drawerOverlay?.addEventListener('click', close);
+    this.drawerCloseBtn?.addEventListener('click', close);
+
+    // Close with Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+  }
+
+  setupItemClickHandlers() {
+    const items = this.circle.querySelectorAll('.circular-scroll-item img');
+    items.forEach((img, idx) => {
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', () => {
+        if (!this.openDrawer) return;
+        // Populate drawer
+        if (this.drawerImageEl) {
+          this.drawerImageEl.src = img.src;
+          this.drawerImageEl.alt = img.alt || `Item ${idx+1}`;
+        }
+        if (this.drawerCaptionEl) {
+          this.drawerCaptionEl.textContent = img.alt || `Item ${idx+1}`;
+        }
+        this.openDrawer();
+      });
+    });
   }
   
   setupResizeListener() {

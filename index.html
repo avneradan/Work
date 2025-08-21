@@ -60,6 +60,22 @@
     </section>
   </div>
 
+  <!-- Drawer Root -->
+  <div id="drawer-root" data-open="false" aria-hidden="true">
+    <div class="drawer-overlay" role="presentation"></div>
+    <aside class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+      <div class="drawer-handle" aria-hidden="true"></div>
+      <button class="drawer-close" aria-label="Close Drawer">×</button>
+      <div class="drawer-scroll">
+        <div class="drawer-content">
+          <h2 id="drawer-title" class="drawer-title">Selected Work</h2>
+          <img id="drawer-image" alt="Selected item"/>
+          <p id="drawer-caption" class="drawer-caption"></p>
+        </div>
+      </div>
+    </aside>
+  </div>
+
   <!-- Custom cursor script -->
   <script src="cursor.js"></script>
   <script src="animation.js"></script>
